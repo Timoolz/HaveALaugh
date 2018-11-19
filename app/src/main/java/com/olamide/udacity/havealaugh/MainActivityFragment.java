@@ -5,9 +5,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.olamide.jokes.Joke;
+import com.olamide.jokes.JokeFactory;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -23,6 +29,7 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
+        ButterKnife.bind(this, root);
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
@@ -31,6 +38,15 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+
         return root;
+    }
+
+    @OnClick(R.id.bt_tell_joke)
+    public void tellJoke(){
+        JokeFactory jokeFactory = new JokeFactory();
+       Joke joke =  jokeFactory.getDemoJoke();
+
+        Toast.makeText(getContext(), joke.getContent(),Toast.LENGTH_SHORT).show();
     }
 }
