@@ -1,5 +1,6 @@
 package com.olamide.udacity.havealaugh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.olamide.jokedisplay.JokeActivity;
 import com.olamide.jokes.Joke;
 import com.olamide.jokes.JokeFactory;
 
@@ -48,5 +50,10 @@ public class MainActivityFragment extends Fragment {
        Joke joke =  jokeFactory.getDemoJoke();
 
         Toast.makeText(getContext(), joke.getContent(),Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getContext(), JokeActivity.class);
+        intent.putExtra(JokeActivity.JOKE_AUTHOR_KEY, joke.getAuthor());
+        intent.putExtra(JokeActivity.JOKE_CONTENT_KEY, joke.getContent());
+        startActivity(intent);
     }
 }
