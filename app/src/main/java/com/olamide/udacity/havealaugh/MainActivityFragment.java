@@ -1,11 +1,14 @@
 package com.olamide.udacity.havealaugh;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -14,6 +17,7 @@ import com.olamide.jokedisplay.JokeActivity;
 import com.olamide.jokes.Joke;
 import com.olamide.jokes.JokeFactory;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -21,7 +25,10 @@ import butterknife.OnClick;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class MainActivityFragment extends Fragment implements JokeAsynctaskInterface {
+
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
     public MainActivityFragment() {
     }
@@ -32,6 +39,10 @@ public class MainActivityFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
         ButterKnife.bind(this, root);
+
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(getActivity(), "Manfred"));
+
+
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
@@ -46,14 +57,20 @@ public class MainActivityFragment extends Fragment {
 
     @OnClick(R.id.bt_tell_joke)
     public void tellJoke(){
-        JokeFactory jokeFactory = new JokeFactory();
-       Joke joke =  jokeFactory.getDemoJoke();
 
-        Toast.makeText(getContext(), joke.getContent(),Toast.LENGTH_SHORT).show();
+        pbLoading.setVisibility(View.VISIBLE);
+        new JokeAsyncTask(this).execute();
+    }
 
+    @Override
+    public void didplayJoke(com.olamide.udacity.havealaugh.backend.myApi.model.Joke joke) {
+        pbLoading.setVisibility(View.INVISIBLE);
+        Toast.makeText(getContext(), joke.getContent(), Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getContext(), JokeActivity.class);
         intent.putExtra(JokeActivity.JOKE_AUTHOR_KEY, joke.getAuthor());
         intent.putExtra(JokeActivity.JOKE_CONTENT_KEY, joke.getContent());
-        startActivity(intent);
+        getContext().startActivity(intent);
+
+
     }
 }

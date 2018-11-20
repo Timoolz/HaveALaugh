@@ -3,6 +3,8 @@ package com.olamide.udacity.havealaugh.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.olamide.jokes.Joke;
+import com.olamide.jokes.JokeFactory;
 import com.olamide.udacity.havealaugh.backend.MyBean;
 
 import javax.inject.Named;
@@ -26,6 +28,14 @@ public class MyEndpoint {
         response.setData("Hi, " + name);
 
         return response;
+    }
+
+    @ApiMethod(name = "getJoke")
+    public Joke getJoke(){
+        JokeFactory jokeFactory = new JokeFactory();
+        Joke joke =  jokeFactory.getDemoJoke();
+        return joke;
+
     }
 
 }

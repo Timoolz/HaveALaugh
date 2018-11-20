@@ -23,6 +23,17 @@
 
         android:text="@string/button_text" />
 
+    <ProgressBar
+        android:layout_below="@id/bt_tell_joke"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        android:padding="15dp"
+        android:id="@+id/pb_loading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="wrap_content"
