@@ -24,6 +24,7 @@ public class JokeAsyncTaskTest  {
 
                 assertNotNull(joke);
                 assertNotNull(joke.getContent());
+                assertNotEquals(joke.getContent(),"");
             }
 
         });
