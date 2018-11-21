@@ -1,4 +1,5 @@
-package com.olamide.udacity.havealaugh;
+package com.olamide.udacity.havealaugh.free;
+
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,10 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.olamide.jokedisplay.JokeActivity;
+import com.olamide.udacity.havealaugh.EndpointsAsyncTask;
+import com.olamide.udacity.havealaugh.JokeAsyncTask;
+import com.olamide.udacity.havealaugh.JokeAsynctaskInterface;
+import com.olamide.udacity.havealaugh.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,7 +26,7 @@ import butterknife.OnClick;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * A simple {@link Fragment} subclass.
  */
 public class MainActivityFragment extends Fragment implements JokeAsynctaskInterface {
 
@@ -29,12 +34,16 @@ public class MainActivityFragment extends Fragment implements JokeAsynctaskInter
     ProgressBar pbLoading;
 
     public MainActivityFragment() {
+        // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        // Inflate the layout for this fragment
+        View root = inflater.inflate(R.layout.fragment_main_activity, container, false);
+
 
         ButterKnife.bind(this, root);
 
@@ -72,3 +81,9 @@ public class MainActivityFragment extends Fragment implements JokeAsynctaskInter
 
     }
 }
+
+
+
+
+
+

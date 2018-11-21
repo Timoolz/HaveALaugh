@@ -31,13 +31,50 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+    flavorDimensions "version"
+    productFlavors {
+        free {
+            dimension "version"
+            applicationId "com.olamide.udacity.havealaugh.free"
+        }
+        paid {
+            dimension "version"
+            applicationId "com.olamide.udacity.havealaugh.paid"
+        }
+    }
+
+
+    sourceSets {
+        main
+        //{ java.srcDirs = ['src/main/java', 'src/unitTest/java'] }
+        free {
+            manifest.srcFile 'src/free/AndroidManifest.xml'
+            java.srcDirs = ['src/free/java']
+            res.srcDirs = ['src/free/res']
+        }
+        paid {
+            res.srcDirs = ['src/paid/res']
+            java.srcDirs = ['src/paid/java']
+        }
+    }
+
+
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    freeImplementation fileTree(dir: 'src/free/libs', include: ['*.jar'])
+    //noinspection GradleCompatible
+    implementation 'com.android.support:support-v4:28.0.0'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    freeImplementation ('com.google.android.gms:play-services-ads:17.1.1') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'

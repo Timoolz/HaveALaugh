@@ -2,7 +2,7 @@ package com.olamide.udacity.havealaugh;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.olamide.udacity.havealaugh.backend.myApi.model.Joke;
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,11 +20,10 @@ public class JokeAsyncTaskTest  {
         final JokeAsyncTask jokeAsyncTask = new JokeAsyncTask(new JokeAsynctaskInterface()
         {
             @Override
-            public void didplayJoke(Joke joke) {
+            public void didplayJoke(String joke) {
 
                 assertNotNull(joke);
-                assertNotNull(joke.getContent());
-                assertNotEquals(joke.getContent(),"");
+                assertNotEquals(joke,"");
             }
 
         });

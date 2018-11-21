@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.olamide.udacity.havealaugh.free.MainActivityFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        MainActivityFragment fragment = new MainActivityFragment();
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.fragment_main, fragment)
+//                .commit();
     }
 
 
