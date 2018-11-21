@@ -12,11 +12,9 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.olamide.udacity.havealaugh.backend.myApi.MyApi;
-import com.olamide.udacity.havealaugh.backend.myApi.model.Joke;
-
 import java.io.IOException;
 
-public class JokeAsyncTask extends AsyncTask<Void, Void, Joke> {
+public class JokeAsyncTask extends AsyncTask<Void, Void, String> {
 
     private JokeAsynctaskInterface jokeAsynctaskInterface;
     private static MyApi myApiService = null;
@@ -27,7 +25,7 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, Joke> {
     }
 
     @Override
-    protected Joke doInBackground(Void... params) {
+    protected String doInBackground(Void... params) {
         if(myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -51,15 +49,16 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, Joke> {
 
 
         try {
-            return myApiService.getJoke().execute();
+            return myApiService.getJoke().execute().getData();
+            //return "dndjsksddsldsddhfhd";
         } catch (IOException e) {
             Log.e("JokeAsynx", e.getMessage());
-            return new Joke();
+            return e.getMessage();
         }
     }
 
     @Override
-    protected void onPostExecute(Joke joke) {
+    protected void onPostExecute(String joke) {
         super.onPostExecute(joke);
         jokeAsynctaskInterface.didplayJoke(joke);
 

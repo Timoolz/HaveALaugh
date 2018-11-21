@@ -14,8 +14,6 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.olamide.jokedisplay.JokeActivity;
-import com.olamide.jokes.Joke;
-import com.olamide.jokes.JokeFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,12 +61,12 @@ public class MainActivityFragment extends Fragment implements JokeAsynctaskInter
     }
 
     @Override
-    public void didplayJoke(com.olamide.udacity.havealaugh.backend.myApi.model.Joke joke) {
+    public void didplayJoke(String joke) {
         pbLoading.setVisibility(View.INVISIBLE);
-        Toast.makeText(getContext(), joke.getContent(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), joke, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getContext(), JokeActivity.class);
-        intent.putExtra(JokeActivity.JOKE_AUTHOR_KEY, joke.getAuthor());
-        intent.putExtra(JokeActivity.JOKE_CONTENT_KEY, joke.getContent());
+        //intent.putExtra(JokeActivity.JOKE_AUTHOR_KEY, joke.getAuthor());
+        intent.putExtra(JokeActivity.JOKE_CONTENT_KEY, joke);
         getContext().startActivity(intent);
 
 

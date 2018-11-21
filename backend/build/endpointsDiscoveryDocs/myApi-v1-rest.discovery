@@ -23,9 +23,9 @@
   "getJoke": {
    "httpMethod": "GET",
    "id": "myApi.getJoke",
-   "path": "joke",
+   "path": "mybean",
    "response": {
-    "$ref": "Joke"
+    "$ref": "MyBean"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
@@ -104,18 +104,6 @@
  "protocol": "rest",
  "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
  "schemas": {
-  "Joke": {
-   "id": "Joke",
-   "properties": {
-    "author": {
-     "type": "string"
-    },
-    "content": {
-     "type": "string"
-    }
-   },
-   "type": "object"
-  },
   "MyBean": {
    "id": "MyBean",
    "properties": {

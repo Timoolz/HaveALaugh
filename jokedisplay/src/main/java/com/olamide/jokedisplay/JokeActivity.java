@@ -9,7 +9,7 @@ public class JokeActivity extends AppCompatActivity {
 
 
     public static final String JOKE_CONTENT_KEY = "jokeContent";
-    public static final String JOKE_AUTHOR_KEY = "jokeAuthor";
+    //public static final String JOKE_AUTHOR_KEY = "jokeAuthor";
 
     TextView tvContent;
 
@@ -24,13 +24,13 @@ public class JokeActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent!=null){
-            String jokeAuthor = intent.getStringExtra(JokeActivity.JOKE_AUTHOR_KEY);
+            //String jokeAuthor = intent.getStringExtra(JokeActivity.JOKE_AUTHOR_KEY);
             String jokeContent = intent.getStringExtra(JokeActivity.JOKE_CONTENT_KEY);
 
-            tvAuthor = (TextView) findViewById(R.id.tv_author);
-            if (jokeAuthor != null && jokeAuthor.length() != 0) {
-                tvAuthor.setText(jokeAuthor);
-            }
+//            tvAuthor = (TextView) findViewById(R.id.tv_author);
+//            if (jokeAuthor != null && jokeAuthor.length() != 0) {
+//                tvAuthor.setText(jokeAuthor);
+//            }
 
             tvContent = (TextView) findViewById(R.id.tv_content);
             if (jokeContent != null && jokeContent.length() != 0) {
